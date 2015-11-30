@@ -1,0 +1,4 @@
+foreman ALL=(root) NOPASSWD: /bin/safe-mount.sh *
+foreman ALL=(root) NOPASSWD: /bin/safe-umount.sh *
+Defaults:foreman !requiretty
+
