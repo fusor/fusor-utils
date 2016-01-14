@@ -6,7 +6,7 @@
 # Usage:
 #  safe-mount.sh 123 www.example.com /nfs_share
 
-
+kvm=36
 regex='[[:space:]]+'
 
 if ! [[ "$1" =~ ^[0-9]+$ ]]; then
@@ -35,4 +35,18 @@ if [[ $? -ne 0 ]]; then
   exit 1
 else
   echo $mount
+fi
+
+uid=$(stat -c '%u' $mount)
+
+if [[ $uid -ne $kvm ]]; then
+  echo "NFS share has owner of: $?. Expected: $kvm"
+  exit 1
+fi
+
+gid=$(stat -c '%g' $mount)
+
+if [[ $gid -ne $kvm ]]; then
+  echo "NFS share has group of: $?. Expected: $kvm"
+  exit 1
 fi
