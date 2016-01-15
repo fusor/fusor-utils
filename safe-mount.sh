@@ -37,16 +37,3 @@ else
   echo $mount
 fi
 
-uid=$(stat -c '%u' $mount)
-
-if [[ $uid -ne $kvm ]]; then
-  echo "NFS share has owner of: $?. Expected: $kvm"
-  exit 1
-fi
-
-gid=$(stat -c '%g' $mount)
-
-if [[ $gid -ne $kvm ]]; then
-  echo "NFS share has group of: $?. Expected: $kvm"
-  exit 1
-fi
