@@ -1,6 +1,6 @@
 Summary: Fusor Server Utilities
 Name:    fusor-utils
-Version: 0.0.1
+Version: 1.0.0
 Release: 0%{dist}
 Group:   Applications/Internet 
 License: Distributable
