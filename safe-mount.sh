@@ -4,7 +4,7 @@
 # that attempts to prevent things like whitespace.
 #
 # Usage:
-#  safe-mount.sh 123 www.example.com /nfs_share
+#  safe-mount.sh 123 www.example.com /nfs_share nfs
 
 kvm=36
 regex='[[:space:]]+'
@@ -26,12 +26,23 @@ if [[ "$3" =~ $regex ]]; then
   exit 1
 fi
 
+if [[ "$4" =~ $regex ]]; then
+  echo "Bad mount type format."
+  exit 1
+fi
+
+if [[ -z "$4" ]]; then
+  type='nfs'
+else
+  type="$4"
+fi
+
 mkdir -p "$mount"
 safe-umount.sh $1 2> /dev/null # attempt to unmount any existing mount
-mount -r -t nfs --target "$mount" --source "$2:$3"
+mount -r -t $type --target "$mount" --source "$2:$3"
 
 if [[ $? -ne 0 ]]; then
-  echo "Failed to mount NFS share"
+  echo "Failed to mount $4 share"
   exit 1
 else
   echo $mount
