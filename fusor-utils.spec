@@ -10,6 +10,7 @@ Source1: safe-mount.sh
 Source2: safe-umount.sh
 
 BuildArch: noarch
+Requires: glusterfs-fuse
 
 %description
 Fusor Server Utilities
