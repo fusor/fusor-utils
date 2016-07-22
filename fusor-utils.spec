@@ -1,7 +1,7 @@
 Summary: Fusor Server Utilities
 Name:    fusor-utils
 Version: 1.0.0
-Release: 0%{dist}
+Release: 0%{?dist}
 Group:   Applications/Internet 
 License: Distributable
 URL: https://github.com/fusor/fusor_utils
